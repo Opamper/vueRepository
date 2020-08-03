@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .wrapper{
+      position: absolute;
+      left: 50%;
+      top: 10%;
+      transform: translateX(-50%);
+      font-weight: 400;
+    }
+    .showInfo:nth-of-type(1) {
+      font-size: 150px;
+    }
+    .showInfo:nth-of-type(2) {
+      font-size: 100px;
+      color: red;
+    }
+    input{
+      min-width: 100px;
+      outline: none;
+      height: 50px;
+      background-color: rgba(187, 225, 250, 1);
+      line-height: 50px;
+      border: none;
+      cursor: pointer;
+      transition: .75s;
+      border-radius: 50px;
+      font-weight: 200;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+<input type="button" onclick="getChar()" value="随机字母">
+<div class="wrapper"><span class="showInfo">--</span> <span class="showInfo">--</span></div>
+
+<div id="activeTime">--</div>
+<script>
+  function getChar () {
+    let charNum = Math.floor(Math.random() * 26) + 65
+    document.getElementsByClassName('showInfo')[0].innerHTML = String.fromCharCode(charNum)
+    document.getElementsByClassName('showInfo')[1].innerHTML = String.fromCharCode(charNum).toLocaleLowerCase()
+  }
+</script>
+</body>
+</html>
