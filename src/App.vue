@@ -19,6 +19,7 @@
           <div class="panel-body">
             <!--显示当前组件-->
             <keep-alive>
+              <!--参数传递-->
               <router-view msg="msgTest"></router-view>
             </keep-alive>
           </div>
