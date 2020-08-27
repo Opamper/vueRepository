@@ -14,7 +14,6 @@
   import {mapGetters, mapActions} from 'vuex'
 
   export default {
-    // put your code
     computed: {
       ...mapGetters(['completeCount', 'completeSize']),
       isAllCheck: {
