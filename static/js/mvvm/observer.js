@@ -57,7 +57,7 @@ function observe(value, vm) {
     }
     // 创建一个对应的观察都对象
     return new Observer(value);
-};
+}
 
 
 var uid = 0;

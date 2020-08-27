@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+代理：
+  比如 a = { b: {c: "xxx", d: "xxx"}, e: "xxx"}
+  不进行代理，若想修改 c 的值，应当这么做：a.b.c = "xxx"，
+  让 a 代理 b，修改 c 的值时应这么做：a.c = "xxx"
+
+1. 好处: 操作数据很方便
+2. 实现:
+  1). 通过Object.defineProperty(obj, key, {})给obj对象添加与data对象的属性对应的属性
+  2). 所有添加的属性都包含get/set方法
+  3). 在get/set方法中去操作data中对应的属性
+-->
+
+<script>
+  const obj = {
+    data: {
+      name: '张三',
+      age: 26
+    }
+  }
+
+  function Proxy (obj) {
+    this.$options = obj;
+    let data = obj._data = this.$options.data
+    let me = this
+    Object.keys(data).forEach(function (key) { // 属性名: name
+      // 对data下的属性实现代理
+      me._proxy(key, obj)
+    })
+  }
+
+  Proxy.prototype = {
+    _proxy: function (key, ob) {
+      Object.defineProperty(ob, key, {
+        configurable: false, // 不能再重新定义
+        enumerable: true, // 可以枚举
+        get: function () {
+          return ob._data[key];
+        },
+        set: function (newVal) {
+          ob._data[key] = newVal;
+        }
+      })
+    }
+  }
+
+  new Proxy(obj)
+
+  console.log(`原数据：${obj.data.name}`)
+  console.log(`代理结果：${obj.name}, ${obj._data.name}`)
+  obj.data.age = 27
+  console.log(`原数据：${obj.data.age}`)
+  console.log(`代理结果：${obj.age}, ${obj._data.age}`)
+  obj.name = "李四"
+  console.log(`原数据：${obj.data.name}`)
+  console.log(`代理结果：${obj.name}, ${obj._data.name}`)
+
+</script>
+</body>
+</html>

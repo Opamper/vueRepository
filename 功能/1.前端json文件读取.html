@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div></div>
+<div></div>
+<script>
+  var div = document.getElementsByTagName("div")[0]
+  var div1 = document.getElementsByTagName("div")[1]
+  fetch("test.json").then(response => response.json()).then(result => {
+    div.textContent = result.title
+    div1.textContent = result.title[1]
+  })
+</script>
+</body>
+</html>

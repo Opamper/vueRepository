@@ -1,5 +1,5 @@
 /*
-* 使用 localStorage 存储 /读取数据的工具 js
+* 使用 localStorage 存储/读取数据的工具 js
 *
 * 使用工具应向外暴露的内容：
 *   1、函数

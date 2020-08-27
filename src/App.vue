@@ -1,39 +1,48 @@
 <template>
-  <div>
-    <div class="row">
-      <div class="col-xs-offset-2 col-xs-8">
-        <div class="page-header"><h2>Vue Router 路由测试</h2></div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-2 col-xs-offset-2">
-        <div class="list-group">
-          <!--生成路由链接-->
-          <router-link to="/home" class="list-group-item">Home</router-link>
-          <router-link to="/about" class="list-group-item">About</router-link>
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <div class="panel">
-          <div class="panel-body">
-            <!--显示当前组件-->
-            <keep-alive>
-              <!-- 参数传递 -->
-              <router-view msg="msgTest"></router-view>
-            </keep-alive>
-          </div>
-        </div>
+  <div id="root">
+    <div class="todo-container">
+      <div class="todo-wrap">
+        <Input/>
+        <List/>
+        <Footer/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import Input from './components/Input'
+  import List from './components/List'
+  import Footer from './components/Footer'
+
   export default {
+    mounted(){
+      this.$store.dispatch('requestData')
+    },
+    /*watch: {  // 深度监视
+      listData: {
+        deep: true,  // deep 深度监视
+        handler: function (newValue, oldValue) {
+          storageUtil.saveDate("listdata_key", newValue)
+        }
+      }
+    },*/
+    components: {
+      Input, List, Footer
+    }
   }
 </script>
 
 <style>
+  /*app*/
+  .todo-container {
+    width: 600px;
+    margin: 0 auto;
+  }
 
+  .todo-container .todo-wrap {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
 </style>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  function testFun () {
+    this.init()
+  }
+
+  testFun.prototype = {
+    init: function () {
+      console.log('++++++++++++++')
+    }
+  }
+
+  let myUtils = {
+    initUtil: function () {
+      console.log('init...')
+    },
+    getTextUtil: function () {
+      console.log('---------')
+    }
+  }
+
+  myUtils['init' + 'Util']()
+
+  new testFun()
+
+  function test (obj) {
+    if (!obj || typeof obj != 'object') {
+      console.log(typeof obj + ' 不存在或不是一个对象')
+      return
+    }
+    console.log('数据正确')
+  }
+
+  var car = {type: 'porsche', model: '911', color: 'white'}
+  test(car)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../static/js/jquery-1.10.2.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    #header {
+      position: fixed;
+      height: 100%;
+      width: 33.3%;
+      background-color: #ddd;
+      background-repeat: repeat, no-repeat;
+      background-size: auto, cover;
+      transition: background-image 2s ease-in-out;
+      will-change: transition;
+    }
+
+    #header.background-n1 {
+      background-image: url("../static/images/01.jpg");
+    }
+
+    #header.background-n2 {
+      background-image: url("../static/images/02.jpg");
+    }
+
+    #header.background-n3 {
+      background-image: url("../static/images/03.jpg");
+    }
+
+    #header.background-n4 {
+      background-image: url("../static/images/04.jpg");
+    }
+
+    #header.background-n5 {
+      background-image: url("../static/images/05.jpg");
+    }
+
+    #header.background-n6 {
+      background-image: url("../static/images/06.jpg");
+    }
+
+    #header.background-n7 {
+      background-image: url("../static/images/07.jpg");
+    }
+
+    #header.background-n8 {
+      background-image: url("../static/images/08.jpg");
+    }
+
+    #header.background-n9 {
+      background-image: url("../static/images/09.jpg");
+    }
+
+    #header.background-n10 {
+      background-image: url("../static/images/10.jpg");
+    }
+  </style>
+</head>
+<body>
+
+<header id="header" class="background-n1" data-current-bg="1" data-bg-count="10"></header>
+
+<script>
+  function changeBg () {
+    const header = $('#header')
+    // a：背景数量 b：当前要移除的背景 c：下一背景
+    let a = header.data('bg-count'), b = header.data('current-bg'), c = (b + 1) > a ? 1 : (b + 1)
+    header.removeClass('background-n' + b).addClass('background-n' + c).data('current-bg', c)
+  }
+
+  setInterval(changeBg, 1e4)
+</script>
+</body>
+</html>
